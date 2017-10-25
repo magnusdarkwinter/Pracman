@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>@ViewData["Title"] - Pracman</title>
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,300i">
+    <!-- Styles -->
+    <link rel="stylesheet" href="~/css/core.min.css">
+    <link rel="stylesheet" href="~/css/app.min.css">
+    <link rel="stylesheet" href="~/css/style.min.css">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="~/img/apple-touch-icon.png">
+    <link rel="icon" href="~/img/favicon.png">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="spinner-dots">
+            <span class="dot1"></span>
+            <span class="dot2"></span>
+            <span class="dot3"></span>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar sidebar-icons-right sidebar-icons-boxed sidebar-expand-lg">
+        <header class="sidebar-header">
+            <a class="logo-icon" href="#"><img src="~/img/logo-icon-light.png" alt="logo icon"></a>
+            <span class="logo">
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Pracman</a>
+            </span>
+            <span class="sidebar-toggle-fold"></span>
+        </header>
+        <nav class="sidebar-navigation">
+            <ul class="menu">
+                <li class="menu-category">Main</li>
+                <li class="menu-item active">
+                    <a class="menu-link" asp-area="" asp-controller="Home" asp-action="Index">
+                        <span class="icon fa fa-home"></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                
+            </ul>
+        </nav>
+    </aside>
+    <!-- END Sidebar -->
+
+    <!-- Topbar -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span>
+        </div>
+        <div class="topbar-right">
+            <ul class="topbar-btns">
+
+                @await Html.PartialAsync("_LoginPartial")
+
+                <!-- Notifications -->
+                <li class="dropdown d-none d-md-block">
+                    <span class="topbar-btn has-new" data-toggle="dropdown"><i class="ti-bell"></i></span>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="media-list media-list-hover media-list-divided media-list-xs">
+                            <a class="media media-new" href="#">
+                                <span class="avatar bg-success"><i class="ti-user"></i></span>
+                                <div class="media-body">
+                                    <p>New user registered</p>
+                                    <time datetime="2017-07-14 20:00">Just now</time>
+                                </div>
+                            </a>
+                            <a class="media" href="#">
+                                <span class="avatar bg-info"><i class="ti-shopping-cart"></i></span>
+                                <div class="media-body">
+                                    <p>New order received</p>
+                                    <time datetime="2017-07-14 20:00">2 min ago</time>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="dropdown-footer">
+                            <div class="left">
+                                <a href="#">Read all notifications</a>
+                            </div>
+                            <div class="right">
+                                <a href="#" data-provide="tooltip" title="Mark all as read"><i class="fa fa-circle-o"></i></a>
+                                <a href="#" data-provide="tooltip" title="Update"><i class="fa fa-repeat"></i></a>
+                                <a href="#" data-provide="tooltip" title="Settings"><i class="fa fa-gear"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- END Notifications -->
+            </ul>
+        </div>
+    </header>
+    <!-- END Topbar -->
+
+    <!-- Main container -->
+    <main>
+
+        @RenderBody()
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="text-center text-md-left">Copyright &copy; 2017 <a href="#">Pracman</a>. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Terms of Service</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Support</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <!-- END Footer -->
+    </main>
+    <!-- END Main container -->
+
+    <!-- Global quickview -->
+    <div id="qv-global" class="quickview" data-url="assets/data/quickview-global.html">
+        <div class="spinner-linear">
+            <div class="line"></div>
+        </div>
+    </div>
+    <!-- END Global quickview -->
+    <!-- Scripts -->
+    <script src="~/js/core.min.js"></script>
+    <script src="~/js/app.min.js"></script>
+    <script src="~/js/script.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

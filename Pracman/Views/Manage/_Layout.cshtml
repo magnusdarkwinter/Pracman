@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<header class="header bg-ui-general">
+    <div class="header-info">
+        <h1 class="header-title">
+            <strong>Account Settings</strong>
+            <small>Manage your account</small>
+        </h1>
+    </div>
+    <div class="header-action">
+        @await Html.PartialAsync("_ManageNav")
+    </div>
+</header><!--/.header -->
+
+<div class="main-content">
+
+    @RenderBody()
+
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

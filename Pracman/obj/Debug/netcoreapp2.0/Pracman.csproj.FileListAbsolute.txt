@@ -1,0 +1,12 @@
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\Pracman\Pracman\bin\Debug\netcoreapp2.0\Pracman.deps.json
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\Pracman\Pracman\bin\Debug\netcoreapp2.0\Pracman.runtimeconfig.json
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\Pracman\Pracman\bin\Debug\netcoreapp2.0\Pracman.runtimeconfig.dev.json
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\Pracman\Pracman\bin\Debug\netcoreapp2.0\Pracman.dll
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\Pracman\Pracman\bin\Debug\netcoreapp2.0\Pracman.pdb
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\Pracman\Pracman\obj\Debug\netcoreapp2.0\Pracman.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\Pracman\Pracman\obj\Debug\netcoreapp2.0\Pracman.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\Pracman\Pracman\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\Pracman\Pracman\obj\Debug\netcoreapp2.0\Pracman.AssemblyInfoInputs.cache
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\Pracman\Pracman\obj\Debug\netcoreapp2.0\Pracman.AssemblyInfo.cs
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\Pracman\Pracman\obj\Debug\netcoreapp2.0\Pracman.dll
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\Pracman\Pracman\obj\Debug\netcoreapp2.0\Pracman.pdb

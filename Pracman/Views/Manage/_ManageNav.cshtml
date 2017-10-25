@@ -1,0 +1,7 @@
+﻿@using Pracman.Views.Manage
+@inject SignInManager<ApplicationUser> SignInManager
+
+<nav class="nav">
+    <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" asp-action="Index">Profile</a>
+    <a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" asp-action="ChangePassword">Password</a>
+</nav>

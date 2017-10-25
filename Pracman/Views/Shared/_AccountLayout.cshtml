@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <title>Pracman - @ViewData["Title"]</title>
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,300i" rel="stylesheet">
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="~/css/core.min.css">
+        <link rel="stylesheet" href="~/css/app.min.css">
+        <link rel="stylesheet" href="~/css/style.min.css">
+
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" href="~/img/apple-touch-icon.png">
+        <link rel="icon" href="~/img/favicon.png">
+    </head>
+    <body>
+        <div class="row min-h-fullscreen center-vh p-20 m-0">
+        
+            @RenderBody()
+
+            <footer class="col-12 align-self-end text-center fs-13">
+                <p class="mb-0"><small>Copyright &copy 2017 <a href="http://thetheme.io/theadmin">Pracman</a>. All rights reserved.</small></p>
+            </footer>
+        </div>
+
+        <!-- Scripts -->
+        <script src="~/js/core.min.js"></script>
+        <script src="~/js/app.min.js"></script>
+        <script src="~/js/script.min.js"></script>
+
+        @RenderSection("Scripts", required: false)
+    </body>
+</html>
