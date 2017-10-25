@@ -1,8 +1,14 @@
 ﻿@{
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
     ViewData["Title"] = "Locked out";
 }
 
-<header>
-    <h2 class="text-danger">@ViewData["Title"]</h2>
-    <p class="text-danger">This account has been locked out, please try again later.</p>
-</header>
+<div class="col-12">
+    <div class="card card-shadowed px-50 py-30 w-400px mx-auto" style="max-width: 100%">
+
+        <header>
+            <h2 class="text-danger">@ViewData["Title"]</h2>
+            <p class="text-danger">This account has been locked out, please try again later.</p>
+        </header>
+    </div>
+</div>

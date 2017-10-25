@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Pracman.Models;
 using Pracman.Models.AccountViewModels;
 using Pracman.Services;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using System.Text;
 
 namespace Pracman.Controllers
 {
@@ -24,17 +22,20 @@ namespace Pracman.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private IHostingEnvironment _env;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            IHostingEnvironment env)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _env = env;
         }
 
         [TempData]
@@ -114,9 +115,30 @@ namespace Pracman.Controllers
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    // put code here for inserting email templates
+
+                    var webRoot = _env.WebRootPath;
+                    var separator = Path.DirectorySeparatorChar.ToString();
+                    var pathToTemplate = webRoot + separator + "email_templates" + separator + "VerifyEmail.html";
+                    var htmlBody = "";
+
+                    using (StreamReader SourceReader = System.IO.File.OpenText(pathToTemplate))
+                    {
+                        htmlBody = SourceReader.ReadToEnd();
+                    }
+
+                    string emailBody = string.Format(htmlBody, 
+                        "We're thrilled to have you here! Get ready to dive into your new account.",
+                        "Hi, " + user.UserName, 
+                        callbackUrl
+                    );
+
+                    // end code for email templates
+
+                    await _emailSender.SendEmailConfirmationAsync(model.Email, emailBody);
+
+                    // await _signInManager.SignInAsync(user, isPersistent: false); // Allows for auto sign in after registration
                     _logger.LogInformation("User created a new account with password.");
                     return RedirectToLocal(returnUrl);
                 }
@@ -178,8 +200,28 @@ namespace Pracman.Controllers
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, code, Request.Scheme);
-                await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                   $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+
+                // put code here for inserting email templates
+
+                var webRoot = _env.WebRootPath;
+                var separator = Path.DirectorySeparatorChar.ToString();
+                var pathToTemplate = webRoot + separator + "email_templates" + separator + "ResetPassword.html";
+                var htmlBody = "";
+
+                using (StreamReader SourceReader = System.IO.File.OpenText(pathToTemplate))
+                {
+                    htmlBody = SourceReader.ReadToEnd();
+                }
+
+                string emailBody = string.Format(htmlBody,
+                    "Let's see if we can get you back into your account.",
+                    "Trouble signing in?",
+                    callbackUrl
+                );
+
+                // end code for email templates
+
+                await _emailSender.SendEmailAsync(model.Email, "Reset Password", emailBody);
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
             }
 
