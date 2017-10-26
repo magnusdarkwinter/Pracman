@@ -116,31 +116,11 @@ namespace Pracman.Controllers
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
 
-                    // put code here for inserting email templates
-
-                    var webRoot = _env.WebRootPath;
-                    var separator = Path.DirectorySeparatorChar.ToString();
-                    var pathToTemplate = webRoot + separator + "email_templates" + separator + "VerifyEmail.html";
-                    var htmlBody = "";
-
-                    using (StreamReader SourceReader = System.IO.File.OpenText(pathToTemplate))
-                    {
-                        htmlBody = SourceReader.ReadToEnd();
-                    }
-
-                    string emailBody = string.Format(htmlBody, 
-                        "We're thrilled to have you here! Get ready to dive into your new account.",
-                        "Hi, " + user.UserName, 
-                        callbackUrl
-                    );
-
-                    // end code for email templates
-
+                    string emailBody = EmailSenderExtensions.FormatEmail(_env, "VerifyEmail.html", "Hi, " + user.UserName, callbackUrl);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, emailBody);
 
                     // await _signInManager.SignInAsync(user, isPersistent: false); // Allows for auto sign in after registration
-                    _logger.LogInformation("User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    return View("PleaseConfirmEmail");
                 }
                 AddErrors(result);
             }
@@ -177,6 +157,13 @@ namespace Pracman.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        public IActionResult PleaseConfirmEmail()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
         public IActionResult ForgotPassword()
         {
             return View();
@@ -201,27 +188,9 @@ namespace Pracman.Controllers
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, code, Request.Scheme);
 
-                // put code here for inserting email templates
-
-                var webRoot = _env.WebRootPath;
-                var separator = Path.DirectorySeparatorChar.ToString();
-                var pathToTemplate = webRoot + separator + "email_templates" + separator + "ResetPassword.html";
-                var htmlBody = "";
-
-                using (StreamReader SourceReader = System.IO.File.OpenText(pathToTemplate))
-                {
-                    htmlBody = SourceReader.ReadToEnd();
-                }
-
-                string emailBody = string.Format(htmlBody,
-                    "Let's see if we can get you back into your account.",
-                    "Trouble signing in?",
-                    callbackUrl
-                );
-
-                // end code for email templates
-
+                string emailBody = EmailSenderExtensions.FormatEmail(_env, "ResetPassword.html", "Trouble signing in?", callbackUrl);
                 await _emailSender.SendEmailAsync(model.Email, "Reset Password", emailBody);
+
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
             }
 
